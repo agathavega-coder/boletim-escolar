@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal do Aluno - Boletim Escolar</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <img src="imagens/logo.png" alt="Logo da Instituição de Ensino" class="logo">
+    <h1>Portal do Aluno</h1>
+  </header>
+
+  <nav>
+    <button type="button" class="btn" onclick="scrollToSection('dados')">Consultar Notas</button>
+    <button type="button" class="btn" onclick="scrollToSection('avisos')">Consultar Faltas</button>
+    <button type="button" class="btn" onclick="scrollToSection('formulario')">Calcular Média</button>
+    <button type="button" class="btn" onclick="window.print()">Imprimir Boletim</button>
+    <button type="button" class="btn btn-warning" onclick="limparFormulario()">Limpar</button>
+    <button type="button" class="btn btn-secondary" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">Voltar</button>
+  </nav>
+
+  <main>
+    <section class="cards-container" aria-label="Resumo Acadêmico">
+      <article class="card">
+        <h3>📚 DISCIPLINAS</h3>
+        <p id="card-disciplinas">08</p>
+      </article>
+      <article class="card">
+        <h3>📊 MÉDIA</h3>
+        <p id="card-media">8.2</p>
+      </article>
+      <article class="card">
+        <h3>📅 FREQUÊNCIA</h3>
+        <p id="card-frequencia">92%</p>
+      </article>
+      <article class="card">
+        <h3>✅ SITUAÇÃO</h3>
+        <p id="card-situacao">Aprovado</p>
+      </article>
+    </section>
+
+    <section id="dados" class="info-aluno">
+      <h2>Dados do Aluno</h2>
+      <p><strong>ALUNO:</strong> João da Silva</p>
+      <p><strong>MATRÍCULA:</strong> 20260025</p>
+      <p><strong>TURMA:</strong> 2º Ano J</p>
+      <p><strong>CURSO:</strong> Desenvolvimento de Sistemas</p>
+      <p><strong>ANO:</strong> 2026</p>
+    </section>
+
+    <section class="tabela-container">
+      <h2>Boletim Escolar</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Disciplina</th>
+            <th>1º Bim.</th>
+            <th>2º Bim.</th>
+            <th>3º Bim.</th>
+            <th>Média</th>
+            <th>Situação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Português</td><td>8.0</td><td>7.5</td><td>9.0</td><td>8.2</td><td class="status-aprovado">Aprovado</td></tr>
+          <tr><td>Matemática</td><td>6.0</td><td>7.0</td><td>8.0</td><td>7.0</td><td class="status-aprovado">Aprovado</td></tr>
+          <tr><td>Programação</td><td>9.0</td><td>8.5</td><td>9.5</td><td>9.0</td><td class="status-aprovado">Aprovado</td></tr>
+          <tr><td>História</td><td>7.0</td><td>6.5</td><td>7.5</td><td>7.0</td><td class="status-aprovado">Aprovado</td></tr>
+          <tr><td>Geografia</td><td>5.0</td><td>6.0</td><td>5.5</td><td>5.5</td><td class="status-recuperacao">Recuperação</td></tr>
+          <tr><td>Física</td><td>4.0</td><td>4.5</td><td>3.5</td><td>4.0</td><td class="status-reprovado">Reprovado</td></tr>
+          <tr><td>Química</td><td>8.0</td><td>8.0</td><td>8.0</td><td>8.0</td><td class="status-aprovado">Aprovado</td></tr>
+          <tr><td>Inglês</td><td>9.5</td><td>9.0</td><td>10.0</td><td>9.5</td><td class="status-aprovado">Aprovado</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="formulario" class="form-section">
+      <h2>Consulta e Cálculo de Notas</h2>
+      <form id="calc-form">
+        <div class="form-group">
+          <label for="nome">Nome do Aluno:</label>
+          <input type="text" id="nome" required>
+        </div>
+        <div class="form-group">
+          <label for="matricula">Matrícula:</label>
+          <input type="text" id="matricula" required>
+        </div>
+        <div class="form-group">
+          <label for="disciplina">Disciplina:</label>
+          <input type="text" id="disciplina" required>
+        </div>
+        <div class="form-group">
+          <label for="n1">Nota 1:</label>
+          <input type="number" id="n1" min="0" max="10" step="0.1" required>
+        </div>
+        <div class="form-group">
+          <label for="n2">Nota 2:</label>
+          <input type="number" id="n2" min="0" max="10" step="0.1" required>
+        </div>
+        <div class="form-group">
+          <label for="n3">Nota 3:</label>
+          <input type="number" id="n3" min="0" max="10" step="0.1" required>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="calcularResultado()">CALCULAR RESULTADO</button>
+      </form>
+      
+      <div id="resultado-calculo" class="resultado-box"></div>
+    </section>
+
+    <aside id="avisos" class="avisos-section">
+      <h2>📢 Área de Avisos</h2>
+      <ul>
+        <li>📢 Resultado das avaliações disponível no sistema.</li>
+        <li>📅 Reunião de pais: 28/08 às 19h.</li>
+        <li>📚 Recuperação: consultar calendário escolar na secretaria.</li>
+      </ul>
+    </aside>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Portal Escolar - Todos os direitos reservados.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
